@@ -1,4 +1,4 @@
-import { onMounted, ref } from 'vue'
+import { onBeforeUnmount, ref } from 'vue'
 import { clamp } from '@oku-ui/utils'
 import type { Direction, Sizes } from './types'
 
@@ -84,7 +84,7 @@ export function useDebounceCallback(callback: () => void, delay: number) {
   const handleCallback = callback
   const debounceTimerRef = ref<number>(0)
 
-  onMounted(() => {
+  onBeforeUnmount(() => {
     window.clearTimeout(debounceTimerRef.value)
   })
 

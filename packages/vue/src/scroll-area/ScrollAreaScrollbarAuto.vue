@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { OkuPresence } from '@oku-ui/presence'
 import { usePrimitiveElement, useResizeObserver } from '@oku-ui/use-composable'
 import { useScrollAreaContext } from './ScrollArea'
@@ -18,14 +18,14 @@ const context = useScrollAreaContext(SCROLL_AREA_SCROLLBAR_NAME, props.scopeOkuS
 
 const visible = ref(false)
 
-const isHorizontal = props.orientation === 'horizontal'
+const isHorizontal = computed(() => props.orientation === 'horizontal')
 
 const handleResize = useDebounceCallback(() => {
   if (context.viewport.value) {
     const isOverflowX = context.viewport.value.offsetWidth < context.viewport.value.scrollWidth
     const isOverflowY = context.viewport.value.offsetHeight < context.viewport.value.scrollHeight
 
-    visible.value = isHorizontal ? isOverflowX : isOverflowY
+    visible.value = isHorizontal.value ? isOverflowX : isOverflowY
   }
 }, 10)
 

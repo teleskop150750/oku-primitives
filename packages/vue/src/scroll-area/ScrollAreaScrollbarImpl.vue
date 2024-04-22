@@ -19,7 +19,7 @@ const emit = defineEmits<ScrollAreaScrollbarImplEmits>()
 
 const context = useScrollAreaContext(SCROLL_AREA_SCROLLBAR_NAME, props.scopeOkuScrollArea)
 
-const [scrollbar, setScrollbar] = usePrimitiveElement<ScrollAreaScrollbarElement>(node => scrollbar.value = node)
+const [scrollbar, setScrollbar] = usePrimitiveElement<ScrollAreaScrollbarElement>()
 
 const rectRef = shallowRef()
 const prevWebkitUserSelectRef = shallowRef('')
